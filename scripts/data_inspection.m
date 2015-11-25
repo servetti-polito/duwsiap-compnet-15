@@ -1,6 +1,7 @@
 %% Define dataset
 clear all; close all;
 dataset_filename = '../dataset_D1_telecom_20120701_20140630_full.csv';
+%dataset_filename = 'dataset_ita.20120701_20140630.csv';
 
 %% Sanitize
 
@@ -22,17 +23,15 @@ ylabel('Upload speed mbit/s');
 maxval_dw = max(T.download_speed_mbits);
 %edges = [ 0 1 2 3 4 5 6 7.1 8.5 10.3 12.6 15.6 19.4 24.0 30.0 37.6 47.3 59.6 75.2 95.0 120.1 maxval ];
 edges_dw_telecomitalia = [0:20];
-size(edges_dw_telecomitalia)
-size(ceil(maxval_dw))
-edges_dw = [ edges_dw_telecomitalia ceil(maxval_dw) ]
+edges_dw = [ edges_dw_telecomitalia ceil(maxval_dw) ];
 
 [hists_dw stats_dw kk_dw] = dataset_to_histograms(T, 'id_sub', 'download_speed_mbits', edges_dw, 50);
 
 
 maxval_up = max(T.upload_speed_mbits);
 %edges = [ 0 1 2 3 4 5 6 7.1 8.5 10.3 12.6 15.6 19.4 24.0 30.0 37.6 47.3 59.6 75.2 95.0 120.1 maxval ];
-edges_up_telecomitalia = [0:.1:1.1];
-edges_up = [ edges_up_telecomitalia ceil(maxval_up) ]
+edges_up_telecomitalia = [0:.05:1.1];
+edges_up = [ edges_up_telecomitalia ceil(maxval_up) ];
 
 [hists_up stats_up kk_up] = dataset_to_histograms(T, 'id_sub', 'upload_speed_mbits', edges_up, 50);
 
